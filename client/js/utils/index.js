@@ -1,5 +1,25 @@
 import moment from 'moment';
 
+const getContrastTextColor = (color) => {
+  const hex = '#';
+  let r;
+  let g;
+  let b;
+  if (color.indexOf(hex) > -1) {
+    r = parseInt(color.substr(1, 2), 16);
+    g = parseInt(color.substr(3, 2), 16);
+    b = parseInt(color.substr(5, 2), 16);
+  } else {
+    color = color.match(/\d+/g);
+    r = color[0];
+    g = color[1];
+    b = color[2];
+  }
+
+  const yiq = ((r * 299) + (g * 587) + (b * 114)) / 1000;
+  return (yiq >= 128) ? 'black' : 'white';
+};
+
 const formatDate = date => moment(date).utc().local().format('MMM Do YYYY, h:mm a');
 
 const deviceInfo = () => {
@@ -16,4 +36,4 @@ const deviceInfo = () => {
   );
 };
 
-export default { formatDate, deviceInfo };
+export default { formatDate, deviceInfo, getContrastTextColor };

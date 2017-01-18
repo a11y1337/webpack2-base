@@ -99,7 +99,8 @@ module.exports = {
     extensions: ['.webpack-loader.js', '.web-loader.js', '.loader.js', '.js', '.jsx'],
     modules: [
       path.resolve(__dirname, 'node_modules'),
-      sourcePath
+      sourcePath,
+      path.resolve(sourcePath, 'js/utils')
     ]
   },
   plugins,

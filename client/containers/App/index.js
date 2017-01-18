@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import * as AppActions from 'actions';
 
 import Header from 'components/Header';
+import Toggle from 'components/Buttons/Toggle';
 import Menu from '../Layout/Menu';
 import '../../styles/style.css';
 import utils from '../../js/utils';
@@ -24,11 +25,12 @@ class App extends Component {
   }
 
   render() {
-  //  const { actions } = this.props;
-
+    const { brand } = this.props;
+    window.console.log('AppProps', this.props);
     return (
       <div style={{ width: '100%', height: '100%' }}>
         <Menu type={'nav'} />
+        <Toggle bgColor={'#ffffff'} />
         <div className="container">
           <Header />
         </div>
@@ -38,7 +40,12 @@ class App extends Component {
 }
 
 function mapStateToProps(state) {
-  return { state };
+  const { menulinks, brand, navconfig } = state.site;
+  return {
+    brand,
+    menulinks,
+    navconfig
+  };
 }
 
 function mapDispatchToProps(dispatch) {
